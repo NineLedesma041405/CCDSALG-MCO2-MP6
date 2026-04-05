@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "filereader.c"
+#include "graphtraversal.c"
 
 #define MAX_CHAR 500
 
