@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "filereader.c"
+#include "connection.c"
+#include "graphtraversal.c"
 
 #define MAX_CHAR 500
 
@@ -13,7 +15,7 @@ int main() {
 
     do {
         
-        printf("SELECT FILE:");
+        printf("SELECT FILE:\n");
         printf("1. Caltech36.txt\n");
         printf("2. Harvard1.txt\n");
         printf("3. Rice31.txt\n");
@@ -47,13 +49,13 @@ int main() {
     } while (filechoice < 1 || filechoice > 5);
 
     struct Graph* graph = loadGraph(filename);
-    printf("Graph loaded!\n");
+    printf("\nGraph loaded!\n");
 
     do {
-        printf("MAIN MENU"); 
-        printf("[1] Get friend list");
-        printf("[2] Get connection"); 
-        printf("[3] Exit");
+        printf("\nMAIN MENU\n"); 
+        printf("[1] Get friend list\n");
+        printf("[2] Get connection\n"); 
+        printf("[3] Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &menuchoice);
 
@@ -65,12 +67,19 @@ int main() {
                 getFriendList(graph, personID);
                 break;
                     }
-            case 2:
-                // get connection main code here
+            case 2: {
+                int id1, id2;
+                printf("Enter first ID: ");
+                scanf("%d", &id1);
+                printf("Enter second ID: ");
+                scanf("%d", &id2);
+
+                getConnection(graph, id1, id2);
                 break;
+            }
 
             case 3:
-                printf("Succesfully exited.");
+                printf("Succesfully exited.\n");
                 exit(EXIT_FAILURE);
                 break;
 
@@ -78,7 +87,7 @@ int main() {
                 printf("Invalid choice.");
                 menuchoice = 0;
         }
-    } while (filechoice < 1 || filechoice > 3);
+    } while (menuchoice != 3);
 
     return 0;
 }

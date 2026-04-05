@@ -6,7 +6,6 @@
 #include <string.h>
 
 #include "filereader.c"
-#include "main.c"
 
 // add code here for both 'get friend list' and 'get connection' here
 void getFriendList(struct Graph* graph, int id) {
@@ -38,5 +37,6 @@ void getFriendList(struct Graph* graph, int id) {
         temp = temp->next;
     }
     printf("\n");
+
 }
 #endif
