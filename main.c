@@ -46,7 +46,8 @@ int main() {
 
     } while (filechoice < 1 || filechoice > 5);
 
-    loadGraph(filename);
+    struct Graph* graph = loadGraph(filename);
+    printf("Graph loaded!\n");
 
     do {
         printf("MAIN MENU"); 
@@ -57,9 +58,13 @@ int main() {
         scanf("%d", &menuchoice);
 
         switch (menuchoice) {
-            case 1:
-                // get friend list main code here
+            case 1: {    //get friend list main code
+                int personID;
+                printf("Enter ID of person: ");
+                scanf("%d", &personID);
+                getFriendList(graph, personID);
                 break;
+                    }
             case 2:
                 // get connection main code here
                 break;
