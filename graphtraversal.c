@@ -7,7 +7,6 @@
 
 #include "filereader.c"
 
-// add code here for both 'get friend list' and 'get connection' here
 void getFriendList(struct Graph* graph, int id) {
     if (id < 0 || id >= graph->numVertices) {
         printf("Error: ID %d does not exist in the dataset.\n", id);

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // code for adjacency list and file reading
 
@@ -36,12 +37,11 @@ struct Graph* loadGraph(char* filename) {
     fscanf(file, "%d %d", &n, &e); // reads accounts and friendship count
 
     struct Graph* graph = malloc(sizeof(struct Graph));
-    graph->numVertices = n;
-    graph->adjLists = malloc(n * sizeof(struct Node*));
+    if (graph == NULL) return NULL; 
 
-    for (int i = 0; i < n; i++) {
-        graph->adjLists[i] = NULL;
-    }
+    graph->numVertices = n;
+   
+    graph->adjLists = calloc(n, sizeof(struct Node*));
 
     for (int i = 0; i < e; i++) {
         int src, dest;

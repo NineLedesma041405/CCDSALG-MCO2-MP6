@@ -11,23 +11,45 @@
 int main() {
 
     int filechoice, menuchoice;
-    char fileinput[MAX_CHAR];
     char filename[MAX_CHAR];
-        
-    printf("INPUT FILE (e.g. Caltech36.txt): ");
-    scanf("%s", fileinput);
 
-    sprintf(filename, "data/data/%s", fileinput);
-
-    printf("File successfully loaded!");
+    do {
         
+        printf("SELECT FILE:\n");
+        printf("1. Caltech36.txt\n");
+        printf("2. Harvard1.txt\n");
+        printf("3. Rice31.txt\n");
+        printf("4. Stanford3.txt\n");
+        printf("5. Trinity100.txt\n");
+
+        printf("Input number (1-5): ");
+        scanf("%d", &filechoice);
+
+        switch (filechoice) {
+            case 1:
+                strcpy(filename, "data/data/Caltech36.txt"); 
+                break;
+            case 2:
+                strcpy(filename, "data/data/Harvard1.txt");    
+                break;
+            case 3:
+                strcpy(filename, "data/data/Rice31.txt");  
+                break;
+            case 4: 
+                strcpy(filename, "data/data/Stanford3.txt");  
+                break;
+            case 5:
+                strcpy(filename, "data/data/Trinity100.txt");  
+                break;
+            default:
+                printf("Invalid choice.");
+                filechoice = 0;
+        } 
+
+    } while (filechoice < 1 || filechoice > 5);
+
     struct Graph* graph = loadGraph(filename);
     printf("\nGraph loaded!\n");
-
-    if (graph == NULL) {
-        printf("Error: Could not load file %s.\n", filename);
-        return 1;
-    }
 
     do {
         printf("\nMAIN MENU\n"); 
